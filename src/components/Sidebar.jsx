@@ -19,9 +19,9 @@ function Sidebar({ sidebarOpen, toggleSidebar }) {
   ];
   
   return (
-    <aside className={`fixed inset-y-0 left-0 z-50 flex flex-col transition-all duration-300 bg-gray-900 text-white ${sidebarOpen ? 'w-64' : 'w-20'}`}>
+    <aside className={`fixed inset-y-0 left-0 z-50 flex flex-col transition-all duration-300 bg-[#fcf8f6] text-black ${sidebarOpen ? 'w-64' : 'w-20'}`}>
       {/* Sidebar Header */}
-      <div className="flex items-center justify-between h-16 px-4 bg-yellow-500 text-white">
+      <div className="flex items-center justify-between h-16 px-4 bg-[#fcf8f6] text-black">
         {sidebarOpen ? (
           <>
             <span className="text-sm font-bold">Healthy Eats</span>
@@ -44,7 +44,7 @@ function Sidebar({ sidebarOpen, toggleSidebar }) {
               key={item.path}
               to={item.path}
               className={`flex items-center px-4 py-3 mt-1 transition-colors duration-200 rounded-md ${
-                location.pathname === item.path ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700'
+                location.pathname === item.path ? 'bg-[#ddbea9] text-white' : 'text-black hover:bg-[#ddbea9]'  
               }`}
             >
               <span className="mr-3">{item.icon}</span>

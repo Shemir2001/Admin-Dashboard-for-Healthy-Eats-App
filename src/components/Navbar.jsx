@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, MenuItem, IconButton, Avatar } from '@mui/material';
 import { Settings, Newspaper, Calendar } from 'lucide-react';
-
+import { CircularProgress } from '@mui/material';
+import {auth } from './firebase.js'
+import { signOut } from 'firebase/auth';
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,9 +17,25 @@ function Navbar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
   const handleMenuClose = () => setAnchorEl(null);
+  const [loading, setLoading] = useState(false); // Loading state for sign-out
+  const handleSignOut = async () => {
+    setLoading(true); // Set loading to true
+    handleMenuClose(); // Close the dropdown menu
+
+    try {
+      await signOut(auth); // Sign out the user using Firebase
+      console.log('User signed out successfully');
+      navigate('/signin'); // Redirect to the sign-in page
+    } catch (error) {
+      console.error('Error signing out:', error.message);
+    } finally {
+      setLoading(false); // Set loading to false
+    }
+  };
+
 
   return (
-    <header className="z-10 px-4 py-1 bg-white shadow">
+    <header className="z-5 px-6 py-2 bg-white shadow">
       <div className="flex items-center justify-between">
         {/* Title */}
         <div className="flex items-center">
@@ -46,7 +64,9 @@ function Navbar() {
             <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
               <MenuItem onClick={() => navigate('/profile')}>Profile</MenuItem>
               <MenuItem onClick={() => navigate('/settings')}>Settings</MenuItem>
-              <MenuItem onClick={() => navigate('/logout')}>Logout</MenuItem>
+              <MenuItem onClick={handleSignOut} disabled={loading}>
+                {loading ? <CircularProgress size={20} /> : 'Logout'}
+              </MenuItem>
             </Menu>
           </div>
         </div>

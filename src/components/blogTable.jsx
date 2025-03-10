@@ -92,7 +92,7 @@ export default function BlogTable() {
   ];
 
   return (
-    <div className="p-5">
+    <div className="p-0">
       <div className="flex justify-between mb-4">
         <h2 className="text-xl font-semibold">Blogs</h2>
         <Button type="primary" onClick={handleAdd}>

@@ -143,172 +143,173 @@ const AdminPanel = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Box sx={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          p: 3,
-          minHeight: '100vh',
-          bgcolor: '#f5f5f5'
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Box sx={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        p: 3,
+        minHeight: '100vh',
+        bgcolor: '#f5f5f5',
+        width: '100vw', // Ensure full viewport width
+      }}>
+        <Paper elevation={3} sx={{ 
+          p: 4, 
+         
+         // Full height
+          borderRadius: 2,
         }}>
-          <Paper elevation={3} sx={{ 
-            p: 4, 
-            maxWidth: 600, 
-            width: '100%',
-            borderRadius: 2,
-          }}>
-            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
-              <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', color: '#3f51b5' }}>
-                Content Management
-              </Typography>
-              <Chip 
-                icon={scheduled ? <ScheduleIcon /> : <CheckCircleIcon />} 
-                label={scheduled ? "Scheduled" : "Publish Now"}
-                color={scheduled ? "primary" : "success"}
-              />
-            </Box>
-            
-            <form onSubmit={handleSubmit}>
-              <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
-                  <FormControl fullWidth>
-                    <InputLabel id="type-label">Content Type</InputLabel>
-                    <Select
-                      labelId="type-label"
-                      id="type"
-                      name="type"
-                      value={formData.type}
-                      onChange={handleChange}
-                      label="Content Type"
-                    >
-                      <MenuItem value="tip">Tip</MenuItem>
-                      <MenuItem value="quote">Quote</MenuItem>
-                    </Select>
-                  </FormControl>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormControlLabel
-                    control={
-                      <Switch 
-                        checked={scheduled} 
-                        onChange={toggleScheduled} 
-                        color="primary"
-                      />
-                    }
-                    label={
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                        <AccessTimeIcon sx={{ mr: 0.5, fontSize: 20 }} />
-                        <Typography>Schedule for later</Typography>
-                      </Box>
-                    }
-                  />
-                </Grid>
-                
-                {scheduled && (
-                  <Grid item xs={12}>
-                    <DateTimePicker
-                      label="Publish Date & Time"
-                      value={publishDate}
-                      onChange={(newValue) => setPublishDate(newValue)}
-                      renderInput={(params) => <TextField {...params} fullWidth />}
-                      minDateTime={new Date()}
-                      sx={{ width: '100%' }}
-                    />
-                  </Grid>
-                )}
-                
-                <Grid item xs={12}>
-                  <TextField
-                    label="Content Text"
-                    name="text"
-                    value={formData.text}
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 4 }}>
+            <Typography variant="h4" component="h1" sx={{ fontWeight: 'bold', color: '#3f51b5' }}>
+              Content Management
+            </Typography>
+            <Chip 
+              icon={scheduled ? <ScheduleIcon /> : <CheckCircleIcon />} 
+              label={scheduled ? "Scheduled" : "Publish Now"}
+              color={scheduled ? "primary" : "success"}
+            />
+          </Box>
+          
+          <form onSubmit={handleSubmit}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} sm={6}>
+                <FormControl fullWidth>
+                  <InputLabel id="type-label">Content Type</InputLabel>
+                  <Select
+                    labelId="type-label"
+                    id="type"
+                    name="type"
+                    value={formData.type}
                     onChange={handleChange}
-                    multiline
-                    rows={4}
-                    fullWidth
-                    variant="outlined"
-                    placeholder={formData.type === 'tip' ? 
-                      "Enter a health tip like: Eat a balanced diet with lots of fruits and vegetables." : 
-                      "Enter an inspirational quote here..."
-                    }
-                  />
-                </Grid>
+                    label="Content Type"
+                  >
+                    <MenuItem value="tip">Tip</MenuItem>
+                    <MenuItem value="quote">Quote</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControlLabel
+                  control={
+                    <Switch 
+                      checked={scheduled} 
+                      onChange={toggleScheduled} 
+                      color="primary"
+                    />
+                  }
+                  label={
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <AccessTimeIcon sx={{ mr: 0.5, fontSize: 20 }} />
+                      <Typography>Schedule for later</Typography>
+                    </Box>
+                  }
+                />
               </Grid>
               
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
-                <Button 
-                  type="button" 
-                  variant="outlined" 
-                  onClick={() => {
-                    setFormData({ text: '', type: 'tip' });
-                    setScheduled(false);
-                  }}
-                  disabled={loading}
-                >
-                  Clear
-                </Button>
-                <Button 
-                  type="submit" 
-                  variant="contained" 
-                  color={scheduled ? "primary" : "success"} 
-                  disabled={loading}
-                  startIcon={scheduled ? <ScheduleIcon /> : <CheckCircleIcon />}
-                  sx={{ px: 4 }}
-                >
-                  {loading ? 'Saving...' : scheduled ? 'Schedule Content' : 'Publish Now'}
-                </Button>
-              </Box>
-            </form>
+              {scheduled && (
+                <Grid item xs={12}>
+                  <DateTimePicker
+                    label="Publish Date & Time"
+                    value={publishDate}
+                    onChange={(newValue) => setPublishDate(newValue)}
+                    renderInput={(params) => <TextField {...params} fullWidth />}
+                    minDateTime={new Date()}
+                    sx={{ width: '100%' }}
+                  />
+                </Grid>
+              )}
+              
+              <Grid item xs={12}>
+                <TextField
+                  label="Content Text"
+                  name="text"
+                  value={formData.text}
+                  onChange={handleChange}
+                  multiline
+                  rows={4}
+                  fullWidth
+                  variant="outlined"
+                  placeholder={formData.type === 'tip' ? 
+                    "Enter a health tip like: Eat a balanced diet with lots of fruits and vegetables." : 
+                    "Enter an inspirational quote here..."
+                  }
+                />
+              </Grid>
+            </Grid>
             
-            {/* Content Preview */}
-            {formData.text && (
-              <Paper elevation={1} sx={{ mt: 4, p: 3, bgcolor: '#f8f8f8', borderRadius: 2 }}>
-                <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    Preview:
-                  </Typography>
-                  {scheduled && (
-                    <Chip 
-                      size="small" 
-                      icon={<ScheduleIcon fontSize="small" />} 
-                      label={`Scheduled: ${publishDate.toLocaleString()}`}
-                      color="primary"
-                      variant="outlined"
-                    />
-                  )}
-                </Box>
-                <Box sx={{ 
-                  p: 2, 
-                  bgcolor: 'white', 
-                  borderLeft: '4px solid', 
-                  borderColor: formData.type === 'tip' ? 'primary.main' : 'secondary.main',
-                  borderRadius: 1
-                }}>
-                  <Typography variant="body1">
-                    {formData.text}
-                  </Typography>
-                  <Typography variant="caption" color="textSecondary" sx={{ mt: 1, display: 'block' }}>
-                    Type: {formData.type.charAt(0).toUpperCase() + formData.type.slice(1)}
-                  </Typography>
-                </Box>
-              </Paper>
-            )}
-          </Paper>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
+              <Button 
+                type="button" 
+                variant="outlined" 
+                onClick={() => {
+                  setFormData({ text: '', type: 'tip' });
+                  setScheduled(false);
+                }}
+                disabled={loading}
+              >
+                Clear
+              </Button>
+              <Button 
+                type="submit" 
+                variant="contained" 
+                color={scheduled ? "primary" : "success"} 
+                disabled={loading}
+                startIcon={scheduled ? <ScheduleIcon /> : <CheckCircleIcon />}
+                sx={{ px: 4 }}
+              >
+                {loading ? 'Saving...' : scheduled ? 'Schedule Content' : 'Publish Now'}
+              </Button>
+            </Box>
+          </form>
           
-          <Snackbar 
-            open={notification.open} 
-            autoHideDuration={6000} 
-            onClose={handleCloseNotification}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-          >
-            <Alert onClose={handleCloseNotification} severity={notification.severity}>
-              {notification.message}
-            </Alert>
-          </Snackbar>
-        </Box>
-      </LocalizationProvider>
-    </ThemeProvider>
+          {/* Content Preview */}
+          {formData.text && (
+            <Paper elevation={1} sx={{ mt: 4, p: 3, bgcolor: '#f8f8f8', borderRadius: 2 }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                <Typography variant="subtitle1" color="textSecondary">
+                  Preview:
+                </Typography>
+                {scheduled && (
+                  <Chip 
+                    size="small" 
+                    icon={<ScheduleIcon fontSize="small" />} 
+                    label={`Scheduled: ${publishDate.toLocaleString()}`}
+                    color="primary"
+                    variant="outlined"
+                  />
+                )}
+              </Box>
+              <Box sx={{ 
+                p: 2, 
+                bgcolor: 'white', 
+                borderLeft: '4px solid', 
+                borderColor: formData.type === 'tip' ? 'primary.main' : 'secondary.main',
+                borderRadius: 1
+              }}>
+                <Typography variant="body1">
+                  {formData.text}
+                </Typography>
+                <Typography variant="caption" color="textSecondary" sx={{ mt: 1, display: 'block' }}>
+                  Type: {formData.type.charAt(0).toUpperCase() + formData.type.slice(1)}
+                </Typography>
+              </Box>
+            </Paper>
+          )}
+        </Paper>
+        
+        <Snackbar 
+          open={notification.open} 
+          autoHideDuration={6000} 
+          onClose={handleCloseNotification}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert onClose={handleCloseNotification} severity={notification.severity}>
+            {notification.message}
+          </Alert>
+        </Snackbar>
+      </Box>
+    </LocalizationProvider>
+  </ThemeProvider>
   );
 };
 
