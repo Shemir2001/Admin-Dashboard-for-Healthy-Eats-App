@@ -51,7 +51,7 @@ export default function BlogTable() {
   const handleAdd = () => {
     setNavigateLoading(true); // Start loading
     setTimeout(() => {
-      navigate("/blogNew");
+      navigate("/add-blog");
       setNavigateLoading(false); // Stop loading after navigation
     }, 1000); // Simulate a 1-second delay
   };

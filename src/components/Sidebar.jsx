@@ -8,14 +8,16 @@ function Sidebar({ sidebarOpen, toggleSidebar }) {
   const menuItems = [
     { path: '/', name: 'Dashboard', icon: <Home size={20} /> },
     { path: '/users', name: 'Users', icon: <Image size={20} /> },
-    { path: '/add-blog', name: 'Blog', icon: <Newspaper size={20} /> },
-    { path: '/blog-table', name: 'Blogtable', icon: <Users size={20} /> },
-    { path: '/recipe', name: 'Add Recipe', icon: <Calendar size={20} /> },
+    { path: '/blog-table', name: 'Blog', icon: <Users size={20} /> },
+    { path: '/recipe', name: 'Recipe ', icon: <Settings size={20} /> },
     { path: '/daily-inspiration', name: 'Daily Inspiration', icon: <Calendar size={20} /> },
     { path: '/challenges', name: 'Challenges', icon: <DollarSign size={20} /> },
-    { path: '/analytics', name: 'Analytics', icon: <BarChart2 size={20} /> },
-    { path: '/about-us', name: 'About Us', icon: <HelpCircle size={20} /> },
-    { path: '/settings', name: 'Setting', icon: <Settings size={20} /> },
+    { path: '/adminaccounts', name: 'Admin Account', icon: <HelpCircle size={20} /> },
+    { path: '/foodmanagement', name: 'Manage Foods', icon: <HelpCircle size={20} /> },
+    { path: '/privacy-policy', name: 'Privacy Policy', icon: <HelpCircle size={20} /> },
+
+
+    
   ];
   
   return (
@@ -25,12 +27,12 @@ function Sidebar({ sidebarOpen, toggleSidebar }) {
         {sidebarOpen ? (
           <>
             <span className="text-sm font-bold">Healthy Eats</span>
-            <button onClick={toggleSidebar} className="p-1 focus:outline-none">
+            <button onClick={toggleSidebar} className="p-1 focus:outline-none cursor-pointer">
               <ChevronLeft size={20} />
             </button>
           </>
         ) : (
-          <button onClick={toggleSidebar} className="p-1 mx-auto focus:outline-none">
+          <button onClick={toggleSidebar} className="p-1 mx-auto focus:outline-none cursor-pointer">
             <ChevronRight size={20} />
           </button>
         )}

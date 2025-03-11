@@ -148,14 +148,14 @@ const AdminPanel = () => {
         display: 'flex', 
         justifyContent: 'center', 
         alignItems: 'center', 
-        p: 3,
-        minHeight: '100vh',
+        p: 1,
+       
         bgcolor: '#f5f5f5',
-        width: '100vw', // Ensure full viewport width
       }}>
         <Paper elevation={3} sx={{ 
-          p: 4, 
-         
+          p: 1, 
+          width: '100%',
+          minHeight: '85vh',
          // Full height
           borderRadius: 2,
         }}>
@@ -264,7 +264,7 @@ const AdminPanel = () => {
           
           {/* Content Preview */}
           {formData.text && (
-            <Paper elevation={1} sx={{ mt: 4, p: 3, bgcolor: '#f8f8f8', borderRadius: 2 }}>
+            <Paper elevation={1} sx={{ mt: 4, p: 3, bgcolor: '#f8f8f8', borderRadius: 2, }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="subtitle1" color="textSecondary">
                   Preview:

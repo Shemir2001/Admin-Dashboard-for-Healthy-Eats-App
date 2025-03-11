@@ -927,8 +927,9 @@ const [isEditMode, setIsEditMode] = useState(!!id);
 };
 const handleSaveDraft = async () => {
   if (!title) {
-    message.error("Title is required to save as draft.");
+    alert("Title is required to save as draft.");
     return;
+   
   }
 
   const draftData = {

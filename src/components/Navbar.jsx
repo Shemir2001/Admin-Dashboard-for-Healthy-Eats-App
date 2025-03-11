@@ -35,7 +35,7 @@ function Navbar() {
 
 
   return (
-    <header className="z-5 px-6 py-2 bg-white shadow">
+    <header className="z-0 px-6 py-1 bg-[#fcf8f6] shadow">
       <div className="flex items-center justify-between">
         {/* Title */}
         <div className="flex items-center">

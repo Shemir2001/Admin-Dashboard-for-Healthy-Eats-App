@@ -103,7 +103,7 @@ export default function ChallengesManagement() {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto p-1">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Manage Challenges</h1>
         <Button variant="contained" color="primary" onClick={openAddDialog}>
